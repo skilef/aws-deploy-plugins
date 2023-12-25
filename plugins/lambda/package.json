@@ -1,0 +1,17 @@
+{
+  "name": "@aws-deploy-plugins/lambda",
+  "version": "0.0.2",
+  "license": "MIT",
+  "dependencies": {
+    "@nx/devkit": "17.2.7",
+    "tslib": "^2.3.0",
+    "@aws-sdk/client-sts": "^3.478.0",
+    "archiver": "^6.0.1",
+    "@aws-sdk/client-lambda": "^3.478.0",
+    "@aws-sdk/client-s3": "^3.478.0"
+  },
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts",
+  "executors": "./executors.json"
+}

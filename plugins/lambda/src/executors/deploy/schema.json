@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Deploy executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "functionName": {
+      "type": "string",
+      "description": "Name of the Lambda function to deploy."
+    },
+    "awsRegion": {
+      "type": "string",
+      "description": "AWS region to deploy to. If not set, will use the region of the current profile."
+    },
+    "assumeRoleARN": {
+      "type": "string",
+      "description": "ARN of the role to assume for the AWS API calls. If not set, will use the current profile."
+    },
+    "s3Bucket": {
+      "type": "string",
+      "description": "S3 bucket to upload the package to. If not set, will update the function code directly."
+    },
+    "deleteLocalPackage": {
+      "type": "boolean",
+      "description": "Delete the local package .zip after deploy."
+    },
+    "packageFilePath": {
+      "type": "string",
+      "description": "Path to the local package to deploy."
+    },
+    "compressionLevel": {
+      "type": "integer",
+      "description": "Compression level to use when creating the package .zip. 0-9, 0=none, 9=max. Default is 9."
+    },
+    "buildDirectoryPath": {
+      "type": "string",
+      "description": "Path to the directory containing the code to deploy."
+    },
+    "publish": {
+      "type": "boolean",
+      "description": "Publish the Lambda function after deployment."
+    }
+  },
+  "required": []
+}
