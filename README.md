@@ -1,22 +1,15 @@
+<p align="center">
+
 # AWS Deploy Plugins
 
-[![CI](https://github.com/skilef/aws-deploy-plugins/actions/workflows/ci.yml/badge.svg)](https://github.com/skilef/aws-deploy-plugins/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/skilef/aws-deploy-plugins/graph/badge.svg?token=J6ZOS4XKYG)](https://codecov.io/gh/skilef/aws-deploy-plugins)
-![License](https://badgen.net/static/license/MIT/blue)
+_NX plugins for swift AWS deployment._
 
-NX plugins for deploying projects to AWS.
-As of now, only the `lambda` plugin is available.
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/skilef/aws-deploy-plugins/ci.yml)
+![Codecov](https://img.shields.io/codecov/c/github/skilef/aws-deploy-plugins)
+![GitHub License](https://img.shields.io/github/license/skilef/aws-deploy-plugins)
 
-## Setup
+</p>
 
-With npm:
-
-```bash
-npm install --save-dev @nx-aws-deploy-plugins/lambda
-```
-
-With pnpm:
-
-```bash
-pnpm add --save-dev @nx-aws-deploy-plugins/lambda
-```
+| Plugin                                                 | Version                                                                       |
+| ------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| [@aws-deploy-plugins/lambda](plugins/lambda/README.md) | ![npm](https://img.shields.io/npm/v/%40aws-deploy-plugins%2Flambda?label=npm) |

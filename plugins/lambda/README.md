@@ -1,11 +1,11 @@
 # lambda
 
-This library was generated with [Nx](https://nx.dev).
+## 📦 Install
 
-## Building
+Install the plugin with your package manager of choice (npm, yarn, pnpm, etc).
 
-Run `nx build lambda` to build the library.
+```bash
+npm install --save-dev @nx-aws-deploy-plugins/lambda
+```
 
-## Running unit tests
-
-Run `nx test lambda` to execute the unit tests via [Jest](https://jestjs.io).
+## 🚀 Usage
