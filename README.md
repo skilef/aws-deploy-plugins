@@ -2,7 +2,7 @@
 
 # AWS Deploy Plugins
 
-_NX plugins for swift AWS deployment._
+_NX plugins for easy AWS deployments._
 
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/skilef/aws-deploy-plugins/ci.yml)
 ![Codecov](https://img.shields.io/codecov/c/github/skilef/aws-deploy-plugins)
