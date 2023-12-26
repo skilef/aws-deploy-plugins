@@ -1,4 +1,4 @@
-<p align="center">
+<center>
 
 # AWS Deploy Plugins
 
@@ -8,7 +8,7 @@ _NX plugins for swift AWS deployment._
 ![Codecov](https://img.shields.io/codecov/c/github/skilef/aws-deploy-plugins)
 ![GitHub License](https://img.shields.io/github/license/skilef/aws-deploy-plugins)
 
-</p>
+</center>
 
 | Plugin                                                 | Version                                                                       |
 | ------------------------------------------------------ | ----------------------------------------------------------------------------- |
