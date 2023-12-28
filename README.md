@@ -10,6 +10,6 @@ _NX plugins for easy AWS deployments._
 
 </center>
 
-| Plugin                                                 | Version                                                                       |
-| ------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| [@aws-deploy-plugins/lambda](plugins/lambda/README.md) | ![npm](https://img.shields.io/npm/v/%40aws-deploy-plugins%2Flambda?label=npm) |
+| Plugin                                                 | Version                                                                       | Description                                |
+| ------------------------------------------------------ | ----------------------------------------------------------------------------- | ------------------------------------------ |
+| [@aws-deploy-plugins/lambda](plugins/lambda/README.md) | ![npm](https://img.shields.io/npm/v/%40aws-deploy-plugins%2Flambda?label=npm) | AWS Lambda deploy plugin for NX workspace. |
