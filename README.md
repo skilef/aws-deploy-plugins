@@ -12,6 +12,7 @@
 <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?logo=typescript&logoColor=white" alt="Typescript">
 <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?logo=prettier" alt="Prettier">
 <img src="https://img.shields.io/badge/conventional_commits-1.0.0-green?logo=conventional commits" alt="Conventional commit">
+<img src="https://img.shields.io/badge/audit-sandworm-F9B059">
 </p>
 
 ## Plugins

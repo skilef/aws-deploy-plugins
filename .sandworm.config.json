@@ -1,0 +1,6 @@
+{
+  "audit": {
+    "skipAll": true,
+    "failOn": ["*.critical", "*.high"]
+  }
+}

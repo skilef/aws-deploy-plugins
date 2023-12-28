@@ -16,6 +16,7 @@
     "@nx/js": "17.2.7",
     "@nx/plugin": "^17.2.7",
     "@nx/workspace": "17.2.7",
+    "@nx/devkit": "17.2.7",
     "@sandworm/audit": "^1.56.1",
     "@swc-node/register": "~1.6.7",
     "@swc/cli": "~0.1.62",
@@ -42,7 +43,6 @@
     "@aws-sdk/client-lambda": "^3.478.0",
     "@aws-sdk/client-s3": "^3.478.0",
     "@aws-sdk/client-sts": "^3.478.0",
-    "@nx/devkit": "17.2.7",
     "@swc/helpers": "~0.5.2",
     "archiver": "^6.0.1",
     "tslib": "^2.3.0"
