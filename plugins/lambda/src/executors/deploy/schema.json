@@ -7,7 +7,7 @@
   "properties": {
     "functionName": {
       "type": "string",
-      "description": "Name of the Lambda function to deploy."
+      "description": "Name of the Lambda function to deploy. If not set, will use the project name."
     },
     "awsRegion": {
       "type": "string",
@@ -20,6 +20,10 @@
     "s3Bucket": {
       "type": "string",
       "description": "S3 bucket to upload the package to. If not set, will update the function code directly."
+    },
+    "s3Key": {
+      "type": "string",
+      "description": "S3 key to upload the package to. If not set, the key will be the <project-name>.zip."
     },
     "deleteLocalPackage": {
       "type": "boolean",
@@ -39,7 +43,7 @@
     },
     "publish": {
       "type": "boolean",
-      "description": "Publish the Lambda function after deployment."
+      "description": "Publish a new version of the function."
     }
   },
   "required": []
