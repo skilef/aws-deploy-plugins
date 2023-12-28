@@ -1,4 +1,4 @@
-import { createWriteStream } from 'fs';
+import { createWriteStream, existsSync } from 'fs';
 import * as archiver from 'archiver';
 
 export type CreatePackageOptions = {
@@ -7,9 +7,22 @@ export type CreatePackageOptions = {
   compressionLevel?: number;
 };
 
+/**
+ * Creates a package from the build directory.
+ * @param options The options for creating the package.
+ * @returns A promise that resolves when the package is created.
+ * @throws An error if the build directory does not exist.
+ * @throws An error if there are errors with archiving.
+ */
 export async function createPackage(
   options: CreatePackageOptions
 ): Promise<void> {
+  if (!existsSync(options.buildDirectoryPath)) {
+    throw new Error(
+      `The build directory does not exist: ${options.buildDirectoryPath}`
+    );
+  }
+
   const zipFileStream = createWriteStream(options.packageFilePath);
 
   const archive = archiver('zip', {
@@ -25,7 +38,7 @@ export async function createPackage(
       resolve();
     });
     archive.on('error', (err) => {
-      reject(`Failed to create the package: ${err}`);
+      reject(new Error(`Failed to create the package: ${err}`));
     });
   });
 }
