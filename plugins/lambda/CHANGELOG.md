@@ -2,6 +2,8 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.1](https://github.com/skilef/aws-deploy-plugins/compare/lambda-0.1.0...lambda-0.1.1) (2023-12-28)
+
 ## 0.1.0 (2023-12-25)
 
 
