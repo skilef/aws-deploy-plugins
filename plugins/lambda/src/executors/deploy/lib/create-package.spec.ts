@@ -24,6 +24,8 @@ describe('createPackage', () => {
       packageFilePath: 'package-file-path',
       buildDirectoryPath: 'build-directory-path',
       compressionLevel: 1,
+      publish: false,
+      deleteLocalPackage: true,
     };
 
     (existsSync as jest.Mock).mockReturnValue(false);
@@ -36,6 +38,8 @@ describe('createPackage', () => {
       packageFilePath: 'package-file-path',
       buildDirectoryPath: 'build-directory-path',
       compressionLevel: 1,
+      publish: false,
+      deleteLocalPackage: true,
     };
 
     (existsSync as jest.Mock).mockReturnValue(true);
@@ -63,6 +67,8 @@ describe('createPackage', () => {
       packageFilePath: 'package-file-path',
       buildDirectoryPath: 'build-directory-path',
       compressionLevel: 1,
+      publish: false,
+      deleteLocalPackage: true,
     };
 
     (existsSync as jest.Mock).mockReturnValue(true);

@@ -43,7 +43,11 @@ const context: ExecutorContext = {
 
 describe('normalizeOptions', () => {
   it('should use defaults if not arguments supplied', () => {
-    const options: DeployExecutorSchema = {};
+    const options: DeployExecutorSchema = {
+      publish: false,
+      compressionLevel: 9,
+      deleteLocalPackage: true,
+    };
 
     const result = normalizeOptions(options, context);
 
@@ -66,6 +70,9 @@ describe('normalizeOptions', () => {
   it('should use function name supplied', () => {
     const options: DeployExecutorSchema = {
       functionName: 'my-function',
+      publish: false,
+      compressionLevel: 9,
+      deleteLocalPackage: true,
     };
 
     const result = normalizeOptions(options, context);
@@ -89,6 +96,9 @@ describe('normalizeOptions', () => {
   it('should use s3 bucket supplied', () => {
     const options: DeployExecutorSchema = {
       s3Bucket: 'my-bucket',
+      publish: false,
+      compressionLevel: 9,
+      deleteLocalPackage: true,
     };
 
     const result = normalizeOptions(options, context);
@@ -112,6 +122,9 @@ describe('normalizeOptions', () => {
   it('should use assume role supplied', () => {
     const options: DeployExecutorSchema = {
       assumeRoleArn: 'my-role',
+      publish: false,
+      compressionLevel: 9,
+      deleteLocalPackage: true,
     };
 
     const result = normalizeOptions(options, context);
