@@ -11,31 +11,24 @@ export function normalizeOptions(
   const projectConfigurations =
     context.projectsConfigurations.projects[context.projectName];
 
-  const defaultOptions: NormalizedDeployExecutorSchema = {
-    functionName: context.projectName,
-    deleteLocalPackage: true,
-    packageFilePath: `${context.root}/${projectConfigurations.root}/${context.projectName}.zip`,
-    buildDirectoryPath: `${context.root}/${projectConfigurations.targets['build'].options.outputPath}`,
-    s3Key: `${context.projectName}.zip`,
-    compressionLevel: 9,
-    s3Bucket: undefined,
-    assumeRoleArn: undefined,
-    awsRegion: undefined,
-    publish: false,
-    isUploadToS3: false,
-    isAssumeRole: false,
+  const options: NormalizedDeployExecutorSchema = {
+    functionName: _options.functionName ?? context.projectName,
+    awsRegion: _options.awsRegion,
+    assumeRoleArn: _options.assumeRoleArn,
+    s3Bucket: _options.s3Bucket,
+    s3Key: _options.s3Key ?? `${context.projectName}.zip`,
+    packageFilePath:
+      _options.packageFilePath ??
+      `${context.root}/${projectConfigurations.root}/${context.projectName}.zip`,
+    buildDirectoryPath:
+      _options.buildDirectoryPath ??
+      `${context.root}/${projectConfigurations.targets['build'].options.outputPath}`,
+    publish: _options.publish,
+    compressionLevel: _options.compressionLevel,
+    deleteLocalPackage: _options.deleteLocalPackage,
+    isUploadToS3: _options.s3Bucket ? true : false,
+    isAssumeRole: _options.assumeRoleArn ? true : false,
   };
-
-  let options: NormalizedDeployExecutorSchema = defaultOptions;
-  options = Object.assign(options, _options);
-
-  if (options.s3Bucket) {
-    options.isUploadToS3 = true;
-  }
-
-  if (options.assumeRoleArn) {
-    options.isAssumeRole = true;
-  }
 
   return options;
 }

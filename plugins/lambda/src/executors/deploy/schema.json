@@ -27,7 +27,8 @@
     },
     "deleteLocalPackage": {
       "type": "boolean",
-      "description": "Delete the local package .zip after deploy."
+      "description": "Delete the local package .zip after deploy.",
+      "default": true
     },
     "packageFilePath": {
       "type": "string",
@@ -35,7 +36,8 @@
     },
     "compressionLevel": {
       "type": "integer",
-      "description": "Compression level to use when creating the package .zip. 0-9, 0=none, 9=max. Default is 9."
+      "description": "Compression level to use when creating the package .zip. 0-9, 0=none, 9=max. Default is 9.",
+      "default": 9
     },
     "buildDirectoryPath": {
       "type": "string",
@@ -43,8 +45,9 @@
     },
     "publish": {
       "type": "boolean",
-      "description": "Publish a new version of the function."
+      "description": "Publish a new version of the function.",
+      "default": false
     }
   },
-  "required": []
+  "required": ["deleteLocalPackage", "compressionLevel", "publish"]
 }
