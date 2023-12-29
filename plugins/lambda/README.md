@@ -31,6 +31,7 @@ For example:
 | `awsRegion`          | string  | (Optional) The Lambda's AWS region. If not specified, the default credential provider chain is used.                                                   |
 | `assumeRoleARN`      | string  | (Optional) The ARN of the role to assume before making any AWS API call. If not specified, the default credential provider chain is used.              |
 | `s3Bucket`           | string  | (Optional) The name of the S3 bucket to which the deployment package will be uploaded. If not specified, will deploy the package directly (50 MB max). |
+| `s3Key`              | string  | (Optional) The key of the S3 object to which the deployment package will be uploaded. Defaults to `<project-name>.zip`.                                |
 | `deleteLocalPackage` | boolean | (Optional) Whether to delete the local package after the deployment. Defaults to `true`.                                                               |
 | `packageFilePath`    | string  | (Optional) The path to the deployment package. Defaults to `<project-name>.zip`.                                                                       |
 | `compressionLevel`   | number  | (Optional) The compression level of the deployment package. Defaults to `9`.                                                                           |
