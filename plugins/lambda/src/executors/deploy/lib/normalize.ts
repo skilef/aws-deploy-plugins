@@ -4,6 +4,12 @@ import {
   NormalizedDeployExecutorSchema,
 } from '../schema';
 
+/**
+ * Normalizes the options for the deploy executor.
+ * @param _options The options provided to the deploy executor.
+ * @param context The context of the deploy executor.
+ * @returns The normalized options.
+ */
 export function normalizeOptions(
   _options: DeployExecutorSchema,
   context: ExecutorContext

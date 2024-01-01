@@ -5,6 +5,11 @@ export type AssumeRoleOptions = {
   awsRegion?: string;
 };
 
+/**
+ * Assume a role and return the credentials
+ * @param options Options
+ * @returns Credentials
+ */
 export async function assumeRole(
   options: AssumeRoleOptions
 ): Promise<Credentials> {

@@ -15,13 +15,13 @@
 <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?logo=typescript&logoColor=white" alt="Typescript">
 </p>
 
-## Why should you use this?
+## You might find this project useful if
 
 <ul style="list-style-type:none;padding:0;">
 <li style="padding: 5px">✅&nbsp; You are using <a href="https://nx.dev/">NX workspace</a></li>
-<li style="padding: 5px;">✅&nbsp; You want to deploy to AWS with ease</li>
-<li style="padding: 5px">✅&nbsp; You don't want to use <a href="https://github.com/aws/aws-cdk">AWS SDK</a> or write your own deployment scripts</li>
-<li style="padding: 5px;">✅&nbsp; You don't want to use a full blown framework like <a href="https://github.com/serverless/serverless">Serverless</a> or <a href="https://github.com/aws/serverless-application-model">SAM</a></li>
+<li style="padding: 5px;">✅&nbsp; You <b>want</b> to deploy to AWS with ease</li>
+<li style="padding: 5px">✅&nbsp; You <b>don't want</b> to use <a href="https://github.com/aws/aws-cdk">AWS CDK</a> or write your own deployment scripts</li>
+<li style="padding: 5px;">✅&nbsp; You <b>don't want</b> to use a full blown framework like <a href="https://github.com/serverless/serverless">Serverless</a> or <a href="https://github.com/aws/serverless-application-model">SAM</a></li>
 </ul>
 
 ## Plugins
