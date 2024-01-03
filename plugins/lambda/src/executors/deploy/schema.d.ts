@@ -11,6 +11,12 @@ export interface DeployExecutorSchema {
   deleteLocalPackage?: boolean;
   packageFilePath?: string;
   publish?: boolean;
+  cloudFrontDistributionId?: string;
+  cloudFrontEventType?:
+    | 'origin-request'
+    | 'origin-response'
+    | 'viewer-request'
+    | 'viewer-response';
 } // eslint-disable-line
 
 export interface NormalizedDeployExecutorSchema
@@ -18,4 +24,5 @@ export interface NormalizedDeployExecutorSchema
   credentials?: Credentials;
   isUploadToS3: boolean;
   isAssumeRole: boolean;
+  isLambdaEdge: boolean;
 }

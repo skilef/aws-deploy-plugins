@@ -47,6 +47,21 @@
       "type": "boolean",
       "description": "Publish a new version of the function.",
       "default": false
+    },
+    "cloudFrontDistributionId": {
+      "type": "string",
+      "description": "CloudFront distribution ID. Relevant only if is a Lambda@Edge function triggered by CloudFront"
+    },
+    "cloudFrontEventType": {
+      "type": "string",
+      "description": "CloudFront event type. Relevant only if is a Lambda@Edge function triggered by CloudFront. Default is viewer-request.",
+      "enum": [
+        "viewer-request",
+        "origin-request",
+        "origin-response",
+        "viewer-response"
+      ],
+      "default": "viewer-request"
     }
   },
   "required": ["deleteLocalPackage", "compressionLevel", "publish"]

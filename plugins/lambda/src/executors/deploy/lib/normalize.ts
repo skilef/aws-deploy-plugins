@@ -32,8 +32,11 @@ export function normalizeOptions(
     publish: _options.publish,
     compressionLevel: _options.compressionLevel,
     deleteLocalPackage: _options.deleteLocalPackage,
+    cloudFrontDistributionId: _options.cloudFrontDistributionId,
+    cloudFrontEventType: _options.cloudFrontEventType,
     isUploadToS3: _options.s3Bucket ? true : false,
     isAssumeRole: _options.assumeRoleArn ? true : false,
+    isLambdaEdge: _options.cloudFrontDistributionId ? true : false,
   };
 
   return options;

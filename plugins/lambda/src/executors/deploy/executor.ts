@@ -6,6 +6,7 @@ import { assumeRole } from './lib/assume-role';
 import { uploadPackage } from './lib/upload-package';
 import { updateFunction } from './lib/update-function';
 import { deletePackageFile } from './lib/delete-package';
+import { updateCloudFrontLambdaAssociation } from './lib/update-cloudfront-lambda-association';
 
 export default async function runExecutor(
   _options: DeployExecutorSchema,
@@ -29,11 +30,21 @@ export default async function runExecutor(
     }
 
     logger.log(` Updating the lambda function ${options.functionName}`);
-    await updateFunction(options);
+    const { Version } = await updateFunction(options);
 
     if (options.deleteLocalPackage) {
       logger.log(` Deleting the local package ${options.packageFilePath}`);
       await deletePackageFile(options);
+    }
+
+    if (options.isLambdaEdge) {
+      logger.log(
+        ` Updating the CloudFront distribution ${options.cloudFrontDistributionId}`
+      );
+      await updateCloudFrontLambdaAssociation({
+        ...options,
+        version: Version,
+      });
     }
 
     return {
