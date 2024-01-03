@@ -47,6 +47,7 @@ describe('normalizeOptions', () => {
       publish: false,
       compressionLevel: 9,
       deleteLocalPackage: true,
+      cloudFrontEventType: 'viewer-request',
     };
 
     const result = normalizeOptions(options, context);
@@ -62,8 +63,11 @@ describe('normalizeOptions', () => {
       assumeRoleArn: undefined,
       awsRegion: undefined,
       publish: false,
+      cloudFrontDistributionId: undefined,
+      cloudFrontEventType: 'viewer-request',
       isUploadToS3: false,
       isAssumeRole: false,
+      isLambdaEdge: false,
     });
   });
 
@@ -73,6 +77,7 @@ describe('normalizeOptions', () => {
       publish: false,
       compressionLevel: 9,
       deleteLocalPackage: true,
+      cloudFrontEventType: 'viewer-request',
     };
 
     const result = normalizeOptions(options, context);
@@ -88,8 +93,11 @@ describe('normalizeOptions', () => {
       assumeRoleArn: undefined,
       awsRegion: undefined,
       publish: false,
+      cloudFrontDistributionId: undefined,
+      cloudFrontEventType: 'viewer-request',
       isUploadToS3: false,
       isAssumeRole: false,
+      isLambdaEdge: false,
     });
   });
 
@@ -99,6 +107,7 @@ describe('normalizeOptions', () => {
       publish: false,
       compressionLevel: 9,
       deleteLocalPackage: true,
+      cloudFrontEventType: 'viewer-request',
     };
 
     const result = normalizeOptions(options, context);
@@ -114,8 +123,11 @@ describe('normalizeOptions', () => {
       assumeRoleArn: undefined,
       awsRegion: undefined,
       publish: false,
+      cloudFrontDistributionId: undefined,
+      cloudFrontEventType: 'viewer-request',
       isUploadToS3: true,
       isAssumeRole: false,
+      isLambdaEdge: false,
     });
   });
 
@@ -125,6 +137,7 @@ describe('normalizeOptions', () => {
       publish: false,
       compressionLevel: 9,
       deleteLocalPackage: true,
+      cloudFrontEventType: 'viewer-request',
     };
 
     const result = normalizeOptions(options, context);
@@ -140,8 +153,11 @@ describe('normalizeOptions', () => {
       assumeRoleArn: 'my-role',
       awsRegion: undefined,
       publish: false,
+      cloudFrontDistributionId: undefined,
+      cloudFrontEventType: 'viewer-request',
       isUploadToS3: false,
       isAssumeRole: true,
+      isLambdaEdge: false,
     });
   });
 });
