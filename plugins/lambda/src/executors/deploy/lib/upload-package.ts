@@ -23,9 +23,12 @@ export async function uploadPackage(
         }
       : undefined,
   });
+
+  const packageContents = await readFile(options.packageFilePath);
+
   return s3.putObject({
     Bucket: options.s3Bucket,
     Key: options.s3Key,
-    Body: await readFile(options.packageFilePath),
+    Body: packageContents,
   });
 }

@@ -19,7 +19,7 @@ jest.mock('archiver', () => {
 });
 
 describe('createPackage', () => {
-  it('should throw an error if the build directory does not exist', async () => {
+  it('should throw an error if the build directory does not exist', () => {
     const options = {
       packageFilePath: 'package-file-path',
       buildDirectoryPath: 'build-directory-path',
@@ -33,7 +33,7 @@ describe('createPackage', () => {
     return expect(createPackage(options)).rejects.toThrow(/does not exist/);
   });
 
-  it('should throw an error if there are errors with archiving', async () => {
+  it('should throw an error if there are errors with archiving', () => {
     const options = {
       packageFilePath: 'package-file-path',
       buildDirectoryPath: 'build-directory-path',
@@ -62,7 +62,7 @@ describe('createPackage', () => {
     return expect(createPackage(options)).rejects.toThrow(/Failed to create/);
   });
 
-  it('should create a package if there are no errors with archiving', async () => {
+  it('should create a package if there are no errors with archiving', () => {
     const options = {
       packageFilePath: 'package-file-path',
       buildDirectoryPath: 'build-directory-path',
