@@ -1,7 +1,7 @@
-<h1 align="center">AWS Deploy Plugins</h1>
 <p align="center">
-<i>NX plugins for easy AWS deployments</i>
+<img src="logo.png" width="350px">
 </p>
+
 <p align="center">
 <img src="https://img.shields.io/github/actions/workflow/status/skilef/aws-deploy-plugins/ci.yml?logo=githubactions" alt="GitHub Workflow Status (with event)">
 <img src="https://img.shields.io/codecov/c/github/skilef/aws-deploy-plugins?logo=codecov" alt="Codecov">
@@ -15,20 +15,23 @@
 <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?logo=typescript&logoColor=white" alt="Typescript">
 </p>
 
-## You might find this project useful if
+<hr>
 
-<ul style="list-style-type:none;padding:0;">
-<li style="padding: 5px">✅&nbsp; You are using <a href="https://nx.dev/">NX workspace</a></li>
-<li style="padding: 5px;">✅&nbsp; You <b>want</b> to deploy to AWS with ease</li>
-<li style="padding: 5px">✅&nbsp; You <b>don't want</b> to use <a href="https://github.com/aws/aws-cdk">AWS CDK</a> or write your own deployment scripts</li>
-<li style="padding: 5px;">✅&nbsp; You <b>don't want</b> to use a full blown framework like <a href="https://github.com/serverless/serverless">Serverless</a> or <a href="https://github.com/aws/serverless-application-model">SAM</a></li>
-</ul>
+<h1 align="center">AWS Deploy Plugins</h1>
+<p align="center">
+<i>A suite of NX plugins designed to streamline the deployment of your projects onto AWS effortlessly</i>
+</p>
 
-## Plugins
+<p>
+These plugins were meticulously crafted to address the need for a <b>lightweight</b> solution, avoiding the complexities of full-fledged frameworks like <a href="https://github.com/serverless/serverless">Serverless</a> or <a href="https://github.com/aws/serverless-application-model">SAM</a>, while also eliminating the necessity of developing custom deployment scripts.
+</p>
 
-| Name                                                   | Description                                |
-| ------------------------------------------------------ | ------------------------------------------ |
-| [@aws-deploy-plugins/lambda](plugins/lambda/README.md) | AWS Lambda deploy plugin for NX workspace. |
+## 🚀 Plugins
+
+| Name                                                   | Description                                | Status             |
+| ------------------------------------------------------ | ------------------------------------------ | ------------------ |
+| [@aws-deploy-plugins/lambda](plugins/lambda/README.md) | AWS Lambda deploy plugin for NX workspace. | <b>Implemented</b> |
+| @aws-deploy-plugins/ecs                                | AWS ECS deploy plugin for NX workspace.    | <i>Planned</i>     |
 
 ## License
 

@@ -43,7 +43,7 @@ jobs:
 
       - run: pnpm nx format:check
       - run: pnpm sandworm-audit --skip-all
-      - run: pnpm nx affected -t lint,test,build --parallel=3
+      - run: pnpm nx affected --targets lint,test,build --parallel=3 --configuration=ci
 
       - name: Upload coverage to Codecov
         run: |
