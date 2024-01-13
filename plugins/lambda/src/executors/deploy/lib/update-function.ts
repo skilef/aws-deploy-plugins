@@ -29,17 +29,17 @@ export async function updateFunction(
       : undefined,
   });
 
-  let packageFileContent: Buffer;
+  let packageContents: Buffer;
 
   if (!options.s3Bucket) {
-    packageFileContent = await readFile(options.packageFilePath);
+    packageContents = await readFile(options.packageFilePath);
   }
 
   return lambda.updateFunctionCode({
     FunctionName: options.functionName,
     S3Bucket: options.s3Bucket,
     S3Key: options.s3Bucket ? options.s3Key : undefined,
-    ZipFile: packageFileContent,
+    ZipFile: packageContents,
     Publish: options.publish,
   });
 }
