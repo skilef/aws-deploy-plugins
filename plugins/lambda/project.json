@@ -51,7 +51,7 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "preset": "conventionalcommits",
-        "postTargets": ["github", "deploy"]
+        "postTargets": ["github", "build", "deploy"]
       }
     },
     "github": {
@@ -64,8 +64,10 @@
     "deploy": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
-        "access": "public"
-      }
+        "access": "public",
+        "distFolderPath": "dist/plugins/lambda"
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []
