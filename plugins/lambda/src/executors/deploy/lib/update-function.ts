@@ -2,8 +2,8 @@ import {
   Lambda,
   UpdateFunctionCodeCommandOutput,
 } from '@aws-sdk/client-lambda';
-import { Credentials } from '@aws-sdk/client-sts';
 import { readFile } from 'fs/promises';
+import { AwsCredentialIdentityProvider } from '@aws-sdk/types';
 
 export type UpdateFunctionOptions = {
   functionName: string;
@@ -11,7 +11,7 @@ export type UpdateFunctionOptions = {
   s3Key?: string;
   packageFilePath?: string;
   awsRegion?: string;
-  credentials?: Required<Credentials>;
+  credentials?: AwsCredentialIdentityProvider;
   publish: boolean;
 };
 
@@ -20,13 +20,7 @@ export async function updateFunction(
 ): Promise<UpdateFunctionCodeCommandOutput> {
   const lambda = new Lambda({
     region: options.awsRegion,
-    credentials: options.credentials
-      ? {
-          accessKeyId: options.credentials.AccessKeyId,
-          secretAccessKey: options.credentials.SecretAccessKey,
-          sessionToken: options.credentials.SessionToken,
-        }
-      : undefined,
+    credentials: options.credentials,
   });
 
   let packageContents: Buffer;

@@ -1,4 +1,4 @@
-import { Credentials } from '@aws-sdk/client-sts';
+import { AwsCredentialIdentityProvider } from '@aws-sdk/types';
 
 export interface DeployExecutorSchema {
   functionName?: string;
@@ -21,7 +21,7 @@ export interface DeployExecutorSchema {
 
 export interface NormalizedDeployExecutorSchema
   extends Required<DeployExecutorSchema> {
-  credentials?: Credentials;
+  credentials?: AwsCredentialIdentityProvider;
   isUploadToS3: boolean;
   isAssumeRole: boolean;
   isLambdaEdge: boolean;
