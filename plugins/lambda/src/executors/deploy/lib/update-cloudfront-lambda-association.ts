@@ -3,8 +3,9 @@ import {
   UpdateDistributionCommandOutput,
 } from '@aws-sdk/client-cloudfront';
 import { Lambda } from '@aws-sdk/client-lambda';
+import { AwsCredentialIdentityProvider } from '@aws-sdk/types';
 
-export type updateCloudFrontLambdaAssociationOptions = {
+export type UpdateCloudFrontLambdaAssociationOptions = {
   functionName: string;
   cloudFrontDistributionId: string;
   cloudFrontEventType:
@@ -14,13 +15,15 @@ export type updateCloudFrontLambdaAssociationOptions = {
     | 'viewer-response';
   version: string;
   awsRegion?: string;
+  credentials?: AwsCredentialIdentityProvider;
 };
 
 export async function updateCloudFrontLambdaAssociation(
-  options: updateCloudFrontLambdaAssociationOptions
+  options: UpdateCloudFrontLambdaAssociationOptions
 ): Promise<UpdateDistributionCommandOutput> {
   const lambda = new Lambda({
     region: options.awsRegion,
+    credentials: options.credentials,
   });
 
   // Wait for the lambda function to be active
@@ -42,7 +45,10 @@ export async function updateCloudFrontLambdaAssociation(
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
 
-  const cloudfront = new CloudFront();
+  const cloudfront = new CloudFront({
+    region: options.awsRegion,
+    credentials: options.credentials,
+  });
 
   const { DistributionConfig, ETag } = await cloudfront.getDistributionConfig({
     Id: options.cloudFrontDistributionId,

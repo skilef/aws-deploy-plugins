@@ -2,11 +2,11 @@ import { createPackage } from './lib/create-package';
 import { normalizeOptions } from './lib/normalize';
 import { DeployExecutorSchema } from './schema';
 import { ExecutorContext, logger } from '@nx/devkit';
-import { assumeRole } from './lib/assume-role';
 import { uploadPackage } from './lib/upload-package';
 import { updateFunction } from './lib/update-function';
 import { deletePackageFile } from './lib/delete-package';
 import { updateCloudFrontLambdaAssociation } from './lib/update-cloudfront-lambda-association';
+import { fromTemporaryCredentials } from '@aws-sdk/credential-providers';
 
 export default async function runExecutor(
   _options: DeployExecutorSchema,
@@ -21,7 +21,11 @@ export default async function runExecutor(
 
     if (options.isAssumeRole) {
       logger.log(` 👤 Assuming role ${options.assumeRoleArn}`);
-      options.credentials = await assumeRole(options);
+      options.credentials = fromTemporaryCredentials({
+        params: {
+          RoleArn: options.assumeRoleArn,
+        },
+      });
     }
 
     if (options.isUploadToS3) {

@@ -38,4 +38,4 @@ For example:
 | `packageFilePath`          | string  | (Optional) The path to the deployment package. Defaults to `<project-name>.zip`.                                                                       |
 | `publish`                  | boolean | (Optional) Whether to publish the lambda function. Defaults to `false`.                                                                                |
 | `cloudFrontDistributionId` | string  | (Optional) The ID of the CloudFront distribution to update after deployment. Use it for Lambda@Edge Defaults to `null`.                                |
-| `CloudFrontEventType`      | enum    | (Optional) The type of CloudFront event to update after deployment. Use it for Lambda@Edge Defaults to `viewer-request`.                               |
+| `cloudFrontEventType`      | enum    | (Optional) The type of CloudFront event to update after deployment. Use it for Lambda@Edge Defaults to `viewer-request`.                               |
