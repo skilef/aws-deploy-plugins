@@ -1,55 +1,85 @@
 import { uploadPackage } from './upload-package';
-import { readFile } from 'fs/promises';
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { mockClient } from 'aws-sdk-client-mock';
 import 'aws-sdk-client-mock-jest';
+import * as mockFs from 'mock-fs';
+
 
 const s3Mock = mockClient(S3Client);
-
-jest.mock('fs/promises', () => ({
-  readFile: jest.fn(),
-}));
 
 describe('uploadPackage', () => {
 
   beforeEach(() => {
-    s3Mock.reset();
+    mockFs({
+      'package.zip': 'packageContents',
+    });
   });
 
-  it('should throw if readFile throws', async () => {
+  afterEach(() => {
+    s3Mock.reset();
+    mockFs.restore();
+  });
+
+  it('should throw if the package file does not exist', async () => {
     // Arrange
-    (readFile as jest.Mock).mockRejectedValueOnce(new Error('readFile error'));
+
     const options = {
-      packageFilePath: 'packageFilePath',
+      packageFilePath: 'wrong_package.zip',
       s3Bucket: 's3Bucket',
       s3Key: 's3Key',
     };
 
-    // Act
-    const res = uploadPackage(options)
+    expect.assertions(2);
 
-    // Assert
-    await expect(res).rejects.toThrow('readFile error');
-    expect(s3Mock).not.toHaveReceivedAnyCommand();
+    try {
+      // Act
+      await uploadPackage(options);
+    }
+    catch (err) {
+      // Assert
+      expect(err.message).toMatch(/no such file or directory/);
+      expect(s3Mock).not.toHaveReceivedAnyCommand();
+    }
+
   });
 
   it('should reject if s3.putObject rejects', async () => {
     // Arrange
-    (readFile as jest.Mock).mockResolvedValueOnce('packageContents');
-
     s3Mock.on(PutObjectCommand).rejects(new Error('putObject error'));
 
     const options = {
-      packageFilePath: 'packageFilePath',
+      packageFilePath: 'package.zip',
+      s3Bucket: 's3Bucket',
+      s3Key: 's3Key',
+    };
+
+    expect.assertions(2);
+
+    try {
+      // Act
+      await uploadPackage(options);
+    }
+    catch (err) {
+      // Assert
+      expect(err.message).toBe('putObject error');
+      expect(s3Mock).toHaveReceivedCommand(PutObjectCommand);
+    }
+  });
+
+  it('should upload the package to S3', async () => {
+    // Arrange
+    s3Mock.on(PutObjectCommand).resolves({});
+
+    const options = {
+      packageFilePath: 'package.zip',
       s3Bucket: 's3Bucket',
       s3Key: 's3Key',
     };
 
     // Act
-    const res = uploadPackage(options)
+    await uploadPackage(options);
 
     // Assert
-    await expect(res).rejects.toThrow('putObject error');
     expect(s3Mock).toHaveReceivedCommand(PutObjectCommand);
   });
 });
