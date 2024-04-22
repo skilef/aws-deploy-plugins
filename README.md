@@ -33,11 +33,6 @@ These plugins were meticulously crafted to address the need for a <b>lightweight
 | [@aws-deploy-plugins/lambda](plugins/lambda/README.md) | AWS Lambda deploy plugin for NX workspace. | <b>Implemented</b> |
 | @aws-deploy-plugins/ecs                                | AWS ECS deploy plugin for NX workspace.    | <i>Planned</i>     |
 
-## Tasks
-- [ ] #7
-- [ ] #9
-- [ ] #10
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
