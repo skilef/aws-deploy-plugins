@@ -17,7 +17,7 @@ export type UploadPackageOptions = {
 export async function uploadPackage(
   options: UploadPackageOptions
 ): Promise<PutObjectCommandOutput> {
-  const s3Client = new S3Client({
+  const client = new S3Client({
     region: options.awsRegion,
     credentials: options.credentials,
   });
@@ -30,5 +30,5 @@ export async function uploadPackage(
     Body: packageContents,
   });
 
-  return s3Client.send(command);
+  return client.send(command);
 }

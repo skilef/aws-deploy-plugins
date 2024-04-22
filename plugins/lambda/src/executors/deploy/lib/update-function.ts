@@ -1,5 +1,6 @@
 import {
-  Lambda,
+  LambdaClient,
+  UpdateFunctionCodeCommand,
   UpdateFunctionCodeCommandOutput,
 } from '@aws-sdk/client-lambda';
 import { readFile } from 'fs/promises';
@@ -18,7 +19,7 @@ export type UpdateFunctionOptions = {
 export async function updateFunction(
   options: UpdateFunctionOptions
 ): Promise<UpdateFunctionCodeCommandOutput> {
-  const lambda = new Lambda({
+  const client = new LambdaClient({
     region: options.awsRegion,
     credentials: options.credentials,
   });
@@ -29,11 +30,13 @@ export async function updateFunction(
     packageContents = await readFile(options.packageFilePath);
   }
 
-  return lambda.updateFunctionCode({
+  const command = new UpdateFunctionCodeCommand({
     FunctionName: options.functionName,
     S3Bucket: options.s3Bucket,
     S3Key: options.s3Bucket ? options.s3Key : undefined,
     ZipFile: packageContents,
     Publish: options.publish,
   });
+
+  return client.send(command);
 }
