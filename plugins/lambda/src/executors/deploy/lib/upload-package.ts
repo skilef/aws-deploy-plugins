@@ -1,4 +1,8 @@
-import { S3Client, PutObjectCommand, PutObjectCommandOutput } from '@aws-sdk/client-s3';
+import {
+  S3Client,
+  PutObjectCommand,
+  PutObjectCommandOutput,
+} from '@aws-sdk/client-s3';
 import { readFile } from 'fs/promises';
 import { AwsCredentialIdentityProvider } from '@aws-sdk/types';
 

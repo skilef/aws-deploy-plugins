@@ -85,6 +85,9 @@ devDependencies:
   '@types/jest':
     specifier: ^29.4.0
     version: 29.5.11
+  '@types/mock-fs':
+    specifier: ^4.13.4
+    version: 4.13.4
   '@types/node':
     specifier: 18.16.9
     version: 18.16.9
@@ -115,6 +118,9 @@ devDependencies:
   jest-environment-jsdom:
     specifier: ^29.4.1
     version: 29.7.0
+  mock-fs:
+    specifier: ^5.2.0
+    version: 5.2.0
   ngx-deploy-npm:
     specifier: 8.0.0
     version: 8.0.0(@nx/devkit@17.2.7)(tslib@2.6.2)
@@ -5485,6 +5491,12 @@ packages:
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
     dev: true
 
+  /@types/mock-fs@4.13.4:
+    resolution: {integrity: sha512-mXmM0o6lULPI8z3XNnQCpL0BGxPwx1Ul1wXYEPBGl4efShyxW2Rln0JOPEWGyZaYZMM6OVXM/15zUuFMY52ljg==}
+    dependencies:
+      '@types/node': 18.16.9
+    dev: true
+
   /@types/node@18.16.9:
     resolution: {integrity: sha512-IeB32oIV4oGArLrd7znD2rkHQ6EDCM+2Sr76dJnrHwv9OHBTTM6nuDLK9bmikXzPa0ZlWMWtRGo/Uw4mrzQedA==}
     dev: true
@@ -10112,6 +10124,11 @@ packages:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
     hasBin: true
+    dev: true
+
+  /mock-fs@5.2.0:
+    resolution: {integrity: sha512-2dF2R6YMSZbpip1V1WHKGLNjr/k48uQClqMVb5H3MOvwc9qhYis3/IWbj02qIg/Y8MDXKFF4c5v0rxx2o6xTZw==}
+    engines: {node: '>=12.0.0'}
     dev: true
 
   /ms@2.0.0:
