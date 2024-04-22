@@ -1,5 +1,4 @@
 import { updateFunction } from './update-function';
-import { readFile } from 'fs/promises';
 import {
   LambdaClient,
   UpdateFunctionCodeCommand,

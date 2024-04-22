@@ -29,11 +29,11 @@ export default async function runExecutor(
     }
 
     if (options.isUploadToS3) {
-      logger.log(` 🚀 Uploading the package to S3 bucket ${options.s3Bucket}`);
+      logger.log(` Uploading the package to S3 bucket ${options.s3Bucket}`);
       await uploadPackage(options);
     }
 
-    logger.log(` Updating the lambda function ${options.functionName}`);
+    logger.log(` 🚀 Updating the lambda function ${options.functionName}`);
     const { Version } = await updateFunction(options);
 
     if (options.deleteLocalPackage) {
