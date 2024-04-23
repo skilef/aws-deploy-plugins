@@ -34,7 +34,7 @@ describe('uploadPackage', () => {
       await uploadPackage(options);
     } catch (err) {
       // Assert
-      expect(err.message).toMatch(/no such file or directory/);
+      expect(err.message).toMatch('no such file or directory');
       expect(s3Mock).not.toHaveReceivedAnyCommand();
     }
   });

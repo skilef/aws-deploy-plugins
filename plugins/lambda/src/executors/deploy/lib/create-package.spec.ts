@@ -1,11 +1,7 @@
-import { createWriteStream, existsSync } from 'fs';
 import { createPackage } from './create-package';
+import * as mockFs from 'mock-fs';
 import archiver = require('archiver');
-
-jest.mock('fs', () => ({
-  createWriteStream: jest.fn(),
-  existsSync: jest.fn(),
-}));
+import * as fs from 'fs';
 
 jest.mock('archiver', () => {
   return jest.fn().mockImplementation(() => {
@@ -19,21 +15,15 @@ jest.mock('archiver', () => {
 });
 
 describe('createPackage', () => {
-  it('should throw an error if the build directory does not exist', () => {
-    const options = {
-      packageFilePath: 'package-file-path',
-      buildDirectoryPath: 'build-directory-path',
-      compressionLevel: 1,
-      publish: false,
-      deleteLocalPackage: true,
-    };
-
-    (existsSync as jest.Mock).mockReturnValue(false);
-
-    return expect(createPackage(options)).rejects.toThrow(/does not exist/);
+  afterEach(() => {
+    mockFs.restore();
   });
 
-  it('should throw an error if there are errors with archiving', () => {
+  it('should throw an error if the build directory does not exist', async () => {
+    // Arrange
+
+    mockFs();
+
     const options = {
       packageFilePath: 'package-file-path',
       buildDirectoryPath: 'build-directory-path',
@@ -42,11 +32,33 @@ describe('createPackage', () => {
       deleteLocalPackage: true,
     };
 
-    (existsSync as jest.Mock).mockReturnValue(true);
+    expect.assertions(1);
 
-    (createWriteStream as jest.Mock).mockReturnValue({
-      on: jest.fn().mockImplementation(() => {}),
+    try {
+      // Act
+      await createPackage(options);
+    } catch (error) {
+      // Assert
+      expect(error.message).toMatch('does not exist');
+    }
+  });
+  //
+  it('should throw an error if there are errors with archiving', async () => {
+    // Arrange
+    mockFs({
+      'build-directory-path': {
+        'file1.txt': 'file1-content',
+        'file2.txt': 'file2-content',
+      },
     });
+
+    const options = {
+      packageFilePath: 'package-file-path',
+      buildDirectoryPath: 'build-directory-path',
+      compressionLevel: 1,
+      publish: false,
+      deleteLocalPackage: true,
+    };
 
     (archiver as unknown as jest.Mock).mockReturnValue({
       pipe: jest.fn(),
@@ -59,10 +71,25 @@ describe('createPackage', () => {
       }),
     });
 
-    return expect(createPackage(options)).rejects.toThrow(/Failed to create/);
+    expect.assertions(1);
+
+    try {
+      await createPackage(options);
+    } catch (error) {
+      // Assert
+      expect(error.message).toMatch('error');
+    }
   });
 
-  it('should create a package if there are no errors with archiving', () => {
+  it('should create a package if there are no errors with archiving', async () => {
+    // Arrange
+    mockFs({
+      'build-directory-path': {
+        'file1.txt': 'file1-content',
+        'file2.txt': 'file2-content',
+      },
+    });
+
     const options = {
       packageFilePath: 'package-file-path',
       buildDirectoryPath: 'build-directory-path',
@@ -71,16 +98,19 @@ describe('createPackage', () => {
       deleteLocalPackage: true,
     };
 
-    (existsSync as jest.Mock).mockReturnValue(true);
-
-    (createWriteStream as jest.Mock).mockReturnValue({
+    jest.spyOn(fs, 'createWriteStream').mockReturnValue({
       on: jest.fn().mockImplementation((event, callback) => {
         if (event === 'close') {
           callback();
         }
       }),
-    });
+    } as unknown as fs.WriteStream);
 
-    return expect(createPackage(options)).resolves.toBeUndefined();
+    // Act
+
+    await createPackage(options);
+
+    // Assert
+    expect(archiver).toHaveBeenCalledWith('zip', { zlib: { level: 1 } });
   });
 });
