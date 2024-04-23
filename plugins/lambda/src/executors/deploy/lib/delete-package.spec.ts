@@ -1,23 +1,44 @@
 import { deletePackageFile } from './delete-package';
-import { unlink } from 'fs/promises';
-
-jest.mock('fs/promises', () => ({
-  unlink: jest.fn(),
-}));
+import * as mockFs from 'mock-fs';
+import { existsSync } from 'fs';
 
 describe('deletePackage', () => {
-  it('should throw an error if unlink fails', () => {
-    const error = new Error('unlink failed');
-    (unlink as jest.Mock).mockRejectedValue(error);
-    return expect(
-      deletePackageFile({ packageFilePath: 'foo' })
-    ).rejects.toThrow();
+  beforeEach(() => {
+    mockFs({
+      'package.zip': 'packageContents',
+    });
   });
 
-  it('should succeed if unlink succeeds', () => {
-    (unlink as jest.Mock).mockResolvedValue(undefined);
-    return expect(
-      deletePackageFile({ packageFilePath: 'foo' })
-    ).resolves.toBeUndefined();
+  afterEach(() => {
+    mockFs.restore();
+  });
+
+  it('should should delete the package file', async () => {
+    // Arrange
+    const packageFilePath = 'package.zip';
+    // Act
+    await deletePackageFile({
+      packageFilePath,
+    });
+
+    // Assert
+    expect(existsSync(packageFilePath)).toBe(false);
+  });
+
+  it('should throw an error if the package file does not exist', async () => {
+    // Arrange
+    const packageFilePath = 'wrong_package.zip';
+
+    expect.assertions(1);
+
+    try {
+      // Act
+      await deletePackageFile({
+        packageFilePath,
+      });
+    } catch (error) {
+      // Assert
+      expect(error.message).toMatch('no such file or directory');
+    }
   });
 });

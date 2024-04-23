@@ -36,7 +36,7 @@ describe('updateFunction', () => {
       await updateFunction(options);
     } catch (err) {
       // Assert
-      expect(err.message).toMatch(/no such file or directory/);
+      expect(err.message).toMatch('no such file or directory');
       expect(lambdaMock).not.toHaveReceivedAnyCommand();
     }
   });
